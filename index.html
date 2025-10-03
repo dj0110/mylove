@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Boyfriend Day ❤️</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Satoshi', sans-serif;
+      overflow-x: hidden;
+      background: #0c0a09;
+      color: #f5f5f5;
+    }
+    .aurora {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2;
+      background: radial-gradient(circle at 20% 30%, hsla(333,70%,55%,.4), transparent 60%),
+                  radial-gradient(circle at 80% 40%, hsla(282,82%,54%,.3), transparent 60%),
+                  radial-gradient(circle at 40% 70%, hsla(210,89%,60%,.3), transparent 60%),
+                  radial-gradient(circle at 60% 80%, hsla(35,90%,60%,.3), transparent 60%);
+      animation: aurora 15s infinite alternate;
+    }
+    @keyframes aurora {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 1rem;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+      padding: 2rem;
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease;
+    }
+    .glass.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #ff8ba7, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .btn {
+      background: linear-gradient(90deg, #ff4d6d, #ff1e56);
+      border-radius: 9999px;
+      padding: 0.75rem 2rem;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 0 15px rgba(255,77,109,0.6);
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 0 25px rgba(255,77,109,0.8);
+    }
+    .progress-container {
+      position: fixed; top: 0; left: 0; width: 100%; height: 6px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(5px);
+      z-index: 50;
+    }
+    .progress-bar {
+      height: 6px; width: 0%;
+      background: linear-gradient(90deg, #ff4d6d, #ff1e56);
+      transition: width 0.5s ease;
+    }
+    .polaroid {
+      display: inline-block;
+      background: white;
+      padding: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      transform: rotate(-3deg);
+      transition: transform 0.3s ease;
+    }
+    .polaroid img {
+      max-width: 100%;
+      border-bottom: 20px solid white;
+    }
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora"></div>
+  <div class="progress-container"><div id="progress-bar" class="progress-bar"></div></div>
+
+  <main id="steps" class="space-y-8 p-4">
+    <!-- Step 1 -->
+    <section id="step1" class="glass active">
+      <div class="text-6xl animate-pulse">❤️</div>
+      <h1 class="gradient-text text-4xl font-bold">Hi My Love,</h1>
+      <p>I built a little world for you, just to bring a smile to your face.</p>
+      <button class="btn" onclick="nextStep()">Let's Begin</button>
+    </section>
+    <!-- Step 2 -->
+    <section id="step2" class="glass">
+      <div class="text-6xl">🎉</div>
+      <h2 class="gradient-text text-3xl font-bold">Happy Boyfriend Day!</h2>
+      <p>Happy Boyfriend Day to my very best decision. You don't just add to my life; you are the steady, wonderful core of it. Everything feels better, brighter, and easier with you by my side. Thank you for being the man you are—thoughtful, kind, and just the right amount of crazy. I'm yours, today and always, because there's simply no one else who even comes close.
+      ❤️I LOVE YOU My Wastefellow 😘❤️</p>
+      <button class="btn" onclick="nextStep()">There's more...</button>
+    </section>
+    <!-- Step 3 -->
+    <section id="step3" class="glass">
+      <h2 class="gradient-text text-3xl font-bold">A Few Things I Adore About You</h2>
+      <div class="grid grid-cols-2 gap-4 text-left mt-4">
+        <div class="col-span-2 p-4 bg-gray-800 rounded-lg">
+          <h3 class="font-bold">Your Presence</h3>
+          <p>You are the safe place I never knew I was looking for. Being with you feels like coming home.</p>
+        </div>
+        <div class="p-4 bg-gray-800 rounded-lg">
+          <h3 class="font-bold">Your Eyes</h3>
+          <p>It's a work of art. And I fall for you more and more everytime I saw your eyes</p>
+        </div>
+        <div class="col-span-2 p-4 bg-gray-800 rounded-lg">
+          <h3 class="font-bold">Your Friendly Nature</h3>
+          <p>The way you make me comfortable around you. And the way you take care of me. The way you don't go home until I step into my residence. The way you are there whenever I face bad times. The way how you are in my life all...🤌🤗</p>
+        </div>
+      </div>
+      <button class="btn" onclick="nextStep()">Remember this?</button>
+    </section>
+    <!-- Step 4 -->
+    <section id="step4" class="glass">
+      <h2 class="gradient-text text-3xl font-bold">That One Time...</h2>
+      <div class="polaroid mx-auto mt-4">
+        <img src="https://i.ibb.co/6Z6XgCg/crush.webp" alt="Memory">
+        <div class="text-black text-center">Our favorite memory.</div>
+      </div>
+      <p class="mt-4">Every moment with you feels like a scene from a dream I wanna have on repeat.</p>
+      <button class="btn" onclick="nextStep()">One last thing...</button>
+    </section>
+    <!-- Step 5 -->
+    <section id="step5" class="glass">
+      <div class="text-6xl">💝</div>
+      <h2 class="gradient-text text-3xl font-bold">I Love You Forever</h2>
+      <p>May our future will be the way we are wishing. And we achieve everything we are dreaming. And hope you are my last love and I'm yours. I hope we end our lives at old age as a best couple who has everything they need and saw everything they want.</p>
+      <div id="final-text" class="hidden mt-4 text-2xl gradient-text font-bold"></div>
+      <button id="loveBtn" class="btn" onclick="finale()">I Love U!</button>
+    </section>
+  </main>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 5;
+    function nextStep() {
+      document.getElementById("step"+currentStep).classList.remove("active");
+      currentStep++;
+      document.getElementById("step"+currentStep).classList.add("active");
+      updateProgress();
+    }
+    function updateProgress() {
+      let percent = (currentStep-1)/(totalSteps-1)*100;
+      document.getElementById("progress-bar").style.width = percent+"%";
+    }
+    function finale() {
+      const btn = document.getElementById("loveBtn");
+      btn.style.display = "none";
+      const finalText = document.getElementById("final-text");
+      finalText.innerText = "I Love You ❤️, Dharma😘 Keep loving me...";
+      finalText.classList.remove("hidden");
+      gsap.from(finalText, {y: 50, opacity: 0, duration: 1});
+
+      const duration = 5 * 1000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+    }
+  </script>
+</body>
+</html>
